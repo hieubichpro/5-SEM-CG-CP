@@ -185,7 +185,7 @@ void MainWindow::on_rotate_z_valueChanged(double param)
 }
 
 float move_dist = 0.5;
-int rot_angle = 10;
+int rot_angle = 30;
 
 bool Filter::eventFilter(QObject *obj, QEvent *event)
 {

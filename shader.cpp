@@ -6,7 +6,6 @@ Vertex VertexShader::shade(const Vertex &a, const Mat4x4f& objToWorld, const Mat
 {
     Vec4f new_pos(a.position);
     new_pos = new_pos * objToWorld * camView * projection;
-//    new_pos.print_v();
     Vec4f new_normal(a.normal);
     new_normal = new_normal * objToWorld;
 
@@ -18,6 +17,7 @@ Vertex VertexShader::shade(const Vertex &a, const Mat4x4f& objToWorld, const Mat
     output.invW = 1 / new_pos.w;
     output.texture.x *= output.invW;
     output.texture.y *= output.invW;
+    output.position *= output.invW;
     auto diffuse = light.diff * std::max(0.f, Vec3f::dot(output.normal.normalize(), (light.pos - output.position).normalize())) * light.intensity;
     auto c = (diffuse + light.ambient).saturate();
     output.color = output.color.hadamard(c).saturate();

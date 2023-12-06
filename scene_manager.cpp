@@ -19,9 +19,6 @@ bool SceneManager::testDepth(const Vec3f& p)
 
 void denormolize(int width, int height, Vertex& v)
 {
-    v.position.x = v.position.x * v.invW;
-    v.position.y = v.position.y * v.invW;
-    v.position.z = v.position.z * v.invW;
     v.position.x = NDCX_TO_RASTER(v.position.x, width);
     v.position.y = NDCY_TO_RASTER(v.position.y, height);
 }
@@ -38,6 +35,7 @@ void SceneManager::rasterizeTriangle(Vertex a, Vertex b, Vertex c)
 //    p1.print_vec();
 //    p2.print_vec();
 //    p3.print_vec();
+
     float sx = floor(min(min(p1.x, p2.x), p3.x));
     float ex = ceil(max(max(p1.x, p2.x), p3.x));
 
@@ -70,7 +68,7 @@ void SceneManager::rasterize(Model& m)
 {
     auto camera = camers[curr_camera];
     auto projectMatrix = camera.projectionMatrix;
-    auto viewMatrix = camera.getLookAt();
+    auto viewMatrix = camera.viewMatrix();
     auto objToWorld = m.objToWorld();
 
     for (auto& face: m.faces)
@@ -78,13 +76,13 @@ void SceneManager::rasterize(Model& m)
         auto a = vertex_shader->shade(face.a, objToWorld, projectMatrix, viewMatrix, light);
         auto b = vertex_shader->shade(face.b, objToWorld, projectMatrix, viewMatrix, light);
         auto c = vertex_shader->shade(face.c, objToWorld, projectMatrix, viewMatrix, light);
-        a.position.print_vec();
-        cout << a.invW << endl;
-        b.position.print_vec();
-        cout << b.invW << endl;
-        c.position.print_vec();
-        cout << c.invW << endl;
-//        rasterizeTriangle(a, b, c);
+//        a.position.print_vec();
+//        cout << a.invW << endl;
+//        b.position.print_vec();
+//        cout << a.invW << endl;
+//        c.position.print_vec();
+//        cout << a.invW << endl;
+        rasterizeTriangle(a, b, c);
     }
 }
 
@@ -220,13 +218,13 @@ void SceneManager::moveCamera(type t, float dist)
     case ROTATE_X:
         change_func = [&]()
         {
-            cam.rotate(dist);
+            cam.rotateX(dist);
         };
         break;
     case ROTATE_Y:
         change_func = [&]()
         {
-            cam.rotate(dist);
+            cam.rotateY(dist);
         };
         break;
     default:

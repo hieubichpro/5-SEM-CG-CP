@@ -55,5 +55,18 @@ private:
 };
 
 
+//class GeometryShaderInterface{
+//public:
+//    virtual Vertex shade(const Vertex &a,
+//                         const Mat4x4f& projectMatrix, const Mat4x4f& camView) = 0;
+//    virtual ~GeometryShaderInterface(){}
+//};
+
+//class GeometryShader: public GeometryShaderInterface{
+//public:
+//    Vertex shade(const Vertex &a, const Mat4x4f &projection, const Mat4x4f& camView) override;
+//    ~GeometryShader() override{}
+//};
+
 
 #endif // SHADER_H

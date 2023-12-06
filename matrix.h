@@ -243,27 +243,6 @@ public:
             };
         }
     }
-
-    static Matrix getTranslation(Vec3f pos){
-        if constexpr (S == 4){
-            return {
-                (T)1.0,  (T)0.0, (T)0.0, (T)0,
-                (T)0.0,  (T)1.0, (T)0.0, (T)0,
-                (T)0.0,  (T)0.0, (T)1.0, (T)0,
-                 -pos.x, -pos.y, -pos.z, (T)1.0
-            };
-        }
-    }
-    static Matrix getRotation(Vec3f right, Vec3f up, Vec3f direction){
-        if constexpr (S == 4){
-            return {
-                right.x,  up.x, direction.x, (T)0,
-                right.y,  up.y, direction.y, (T)0,
-                right.z,  up.z, direction.z, (T)0,
-                 (T)0.0, (T)0.0, (T)0.0, (T)1.0
-            };
-        }
-    }
 };
 
 template<typename T>
