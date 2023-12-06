@@ -2,12 +2,12 @@
 #include "barycenter.h"
 const float eps = 1e-6f;
 
-Vertex VertexShader::shade(const Vertex &a, const Mat4x4f& objToWorld, const Mat4x4f &projection, const Mat4x4f& camView, Light& light)
+Vertex VertexShader::shade(const Vertex &a, const Mat4x4f& objToWorld, const Mat4x4f& rotation, const Mat4x4f &projection, const Mat4x4f& camView, Light& light)
 {
     Vec4f new_pos(a.position);
     new_pos = new_pos * objToWorld * camView * projection;
     Vec4f new_normal(a.normal);
-    new_normal = new_normal * objToWorld;
+    new_normal = new_normal * rotation;
 
     Vertex output = a;
     output.position = Vec3f(new_pos.x, new_pos.y, new_pos.z);

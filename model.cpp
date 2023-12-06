@@ -1,5 +1,4 @@
 #include "model.h"
-#include "loader.h"
 Vec3f get_normal(const Vertex& a, const Vertex& b, const Vertex &c)
 {
     auto res = Vec3f::cross(b.position - a.position, c.position - a.position);
@@ -142,7 +141,7 @@ Sphere::Sphere()
 Mat4x4f Model::objToWorld() const
 {
     return Mat4x4f::Scaling(scale_x, scale_y, scale_z) *
-           Mat4x4f::Rotation(alpha_x, alpha_y, alpha_z) *
+           rotation_matrix *
            Mat4x4f::Translation(shift_x, shift_y, shift_z);
 }
 
@@ -187,13 +186,25 @@ void Model::scaleZ(float kz)
 
 void Model::rotateX(float angle)
 {
+    auto step = rot_step;
+    if (angle < alpha_x)
+        step *= -1;
     this->alpha_x = angle;
+    rotation_matrix *= Mat4x4f::RotationX(step);
 }
 void Model::rotateY(float angle)
 {
+    auto step = rot_step;
+    if (angle < alpha_y)
+        step *= -1;
     this->alpha_y = angle;
+    rotation_matrix *= Mat4x4f::RotationY(step);
 }
 void Model::rotateZ(float angle)
 {
+    auto step = rot_step;
+    if (angle < alpha_z)
+        step *= -1;
     this->alpha_z = angle;
+    rotation_matrix *= Mat4x4f::RotationZ(step);
 }

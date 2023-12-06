@@ -63,6 +63,7 @@ public:
     int id_model;
     QImage texture;
     bool isTextured = false;
+    Mat4x4f rotation_matrix = Mat4x4f::Identity();
 private:
     float alpha_x = 0.f, alpha_y = 0.f, alpha_z = 0.f;
     float shift_x = 0.f, shift_y = 0.f, shift_z = 0.f;

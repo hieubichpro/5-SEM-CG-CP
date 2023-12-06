@@ -32,9 +32,6 @@ void SceneManager::rasterizeTriangle(Vertex a, Vertex b, Vertex c)
     auto p1 = a.position;
     auto p2 = b.position;
     auto p3 = c.position;
-//    p1.print_vec();
-//    p2.print_vec();
-//    p3.print_vec();
 
     float sx = floor(min(min(p1.x, p2.x), p3.x));
     float ex = ceil(max(max(p1.x, p2.x), p3.x));
@@ -70,18 +67,13 @@ void SceneManager::rasterize(Model& m)
     auto projectMatrix = camera.projectionMatrix;
     auto viewMatrix = camera.viewMatrix();
     auto objToWorld = m.objToWorld();
+    auto rotation_matrix = m.rotation_matrix;
 
     for (auto& face: m.faces)
     {
-        auto a = vertex_shader->shade(face.a, objToWorld, projectMatrix, viewMatrix, light);
-        auto b = vertex_shader->shade(face.b, objToWorld, projectMatrix, viewMatrix, light);
-        auto c = vertex_shader->shade(face.c, objToWorld, projectMatrix, viewMatrix, light);
-//        a.position.print_vec();
-//        cout << a.invW << endl;
-//        b.position.print_vec();
-//        cout << a.invW << endl;
-//        c.position.print_vec();
-//        cout << a.invW << endl;
+        auto a = vertex_shader->shade(face.a, objToWorld, rotation_matrix, projectMatrix, viewMatrix, light);
+        auto b = vertex_shader->shade(face.b, objToWorld, rotation_matrix, projectMatrix, viewMatrix, light);
+        auto c = vertex_shader->shade(face.c, objToWorld, rotation_matrix, projectMatrix, viewMatrix, light);
         rasterizeTriangle(a, b, c);
     }
 }

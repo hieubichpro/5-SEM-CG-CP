@@ -118,7 +118,7 @@ void MainWindow::on_delete_object_clicked()
 
 void MainWindow::on_add_texture_clicked()
 {
-    QString fname = QFileDialog::getOpenFileName(this, "Choose texture", "C:/Users/abcd2/OneDrive/Desktop/src_course/course_proj/textures", "JPG (*.jpg);;PNG (*.png)");
+    QString fname = QFileDialog::getOpenFileName(this, "Choose texture", "C:/Users/abcd2/OneDrive/Desktop/src_course/Course_Work_CG/textures", "JPG (*.jpg);;PNG (*.png)");
     QImage img;
     if (!img.load(fname))
         return;
@@ -185,7 +185,7 @@ void MainWindow::on_rotate_z_valueChanged(double param)
 }
 
 float move_dist = 0.5;
-int rot_angle = 30;
+int rot_angle = 5;
 
 bool Filter::eventFilter(QObject *obj, QEvent *event)
 {
