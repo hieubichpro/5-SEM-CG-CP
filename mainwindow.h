@@ -37,6 +37,7 @@ private slots:
     void on_delete_object_clicked();
     void on_add_texture_clicked();
     void on_procedural_clicked();
+    void on_bump_clicked();
 
     void on_move_x_valueChanged(double param);
     void on_move_y_valueChanged(double param);

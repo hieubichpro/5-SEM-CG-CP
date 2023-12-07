@@ -145,6 +145,10 @@ void MainWindow::on_procedural_clicked()
     return;
 }
 
+void MainWindow::on_bump_clicked()
+{
+    manager.bump_map();
+}
 
 void MainWindow::on_move_x_valueChanged(double param)
 {

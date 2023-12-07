@@ -252,3 +252,42 @@ void SceneManager::moveLight(type_light t)
     }
     render();
 }
+float random_num(double min, double max) {
+    static std::random_device rd;
+    static std::mt19937 generator(rd());
+    std::uniform_real_distribution<double> distribution(min, max);
+    return distribution(generator);
+}
+
+// Функция для создания произвольного вектора на основе заданного вектора
+Vec3f random_vector(Vec3f a) {
+    float n1, n2, n3;
+    for (int i = 0; i < 3; i++)
+    {
+        n1 = random_num(-5, 5) * i + random_num(3, 3);
+        n2 = random_num(-5, 5) * i + random_num(3, 3);
+        n3 = random_num(-5, 5) * i + random_num(3, 3);
+    }
+
+    return Vec3f{n1, n2, n3}.normalize();
+}
+void SceneManager::bump_map()
+{
+    for (auto& m : models)
+    {
+        for (auto& face : m->faces)
+        {
+            face.a.normal.print_vec();
+        }
+    }
+    cout << "end_test" << endl;
+    for (auto& m : models)
+    {
+        for (auto& face : m->faces)
+        {
+            face.a.normal = random_vector(face.a.normal);
+            face.a.normal.print_vec();
+        }
+    }
+    render();
+}

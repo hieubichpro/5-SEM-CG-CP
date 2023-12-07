@@ -13,6 +13,8 @@
 #include "texture.h"
 #include <QGraphicsScene>
 #include "light.h"
+#include <time.h>
+#include <random>
 #define eps 1e-6
 
 enum type {MOVE_X, MOVE_Y, MOVE_Z,
@@ -57,6 +59,7 @@ public:
     void setTexture(QImage &img);
     void moveCamera(type t, float dist);
     void moveLight(type_light t);
+    void bump_map();
 
 private:
     QImage img;
