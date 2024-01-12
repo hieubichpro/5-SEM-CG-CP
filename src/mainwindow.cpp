@@ -30,6 +30,7 @@ MainWindow::MainWindow(QWidget *parent) :
     auto filter = new Filter(f);
     ui->graphicsView->installEventFilter(filter);
     manager.initialize();
+    disableAll(false);
 }
 
 MainWindow::~MainWindow()
@@ -39,6 +40,7 @@ MainWindow::~MainWindow()
 
 void MainWindow::onListViewClicked(QModelIndex idx)
 {
+    disableAll(true);
     if (!idx.isValid())
         return;
     auto name_obj = this->model->index(idx.row()).data(Qt::DisplayRole).toString();
@@ -286,4 +288,24 @@ void MainWindow::on_near_light_clicked()
 void MainWindow::on_far_light_clicked()
 {
     manager.moveLight(FAR);
+}
+
+void MainWindow::disableAll(bool flag){
+
+    ui->move_x->setEnabled(flag);
+    ui->move_y->setEnabled(flag);
+    ui->move_z->setEnabled(flag);
+
+    ui->rotate_x->setEnabled(flag);
+    ui->rotate_y->setEnabled(flag);
+    ui->rotate_z->setEnabled(flag);
+
+    ui->scale_x->setEnabled(flag);
+    ui->scale_y->setEnabled(flag);
+    ui->scale_z->setEnabled(flag);
+
+    ui->ambient->setEnabled(flag);
+    ui->diffuse->setEnabled(flag);
+    ui->specular->setEnabled(flag);
+    ui->alpha->setEnabled(flag);
 }

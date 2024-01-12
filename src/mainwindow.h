@@ -64,6 +64,7 @@ private slots:
 
     void fill_data_obj(UI_data &data_obj);
     void save_data_obj(UI_data &data_obj);
+    void disableAll(bool flag);
 private:
     Ui::MainWindow *ui;
     QStringListModel *model;
