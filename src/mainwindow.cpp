@@ -308,4 +308,8 @@ void MainWindow::disableAll(bool flag){
     ui->diffuse->setEnabled(flag);
     ui->specular->setEnabled(flag);
     ui->alpha->setEnabled(flag);
+
+    ui->add_texture->setEnabled(flag);
+    ui->procedural->setEnabled(flag);
+    ui->bump->setEnabled(flag);
 }

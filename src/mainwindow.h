@@ -14,7 +14,7 @@ struct UI_data{
     float shift_x = 0, shift_y = 0, shift_z = 0;
     float rot_x = 0, rot_y = 0, rot_z = 0;
     float scale_x = 1.f, scale_y = 1.f, scale_z = 1.f;
-    float ambient = 0.5f, diffuse = 0.5f, specular = 0.8f;
+    float ambient = 0.3f, diffuse = 0.7f, specular = 0.8f;
     int alpha = 128;
 };
 

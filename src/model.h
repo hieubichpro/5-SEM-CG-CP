@@ -63,8 +63,8 @@ public:
     QImage texture;
     bool isTextured = false;
     Mat4x4f rotation_matrix = Mat4x4f::Identity();
-    float ambient_coef = 0.5f;
-    float diffuse_coef = 0.5f;
+    float ambient_coef = 0.3f;
+    float diffuse_coef = 0.7f;
     float specular_coef = 0.8f;
     float alpha_coef = 128;
 

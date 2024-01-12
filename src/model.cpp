@@ -116,7 +116,8 @@ Cylinder::Cylinder()
             vertices.push_back(Vertex{Vec3f{x, y, z}});
         }
     }
-
+    vertices.push_back(Vertex{Vec3f{0, 0, -1}});
+    vertices.push_back(Vertex{Vec3f{0, 0, 1}});
     for (int i = 0; i < vertices.size(); i++)
     {
         faceNeighbor.insert({i, {}});
@@ -134,6 +135,16 @@ Cylinder::Cylinder()
         addFace(top + 35, top, down + 35);
         addFace(down + 35, down, top);
     }
+    auto top1 = vertices.size() - 2;
+    auto top2 = vertices.size() - 1;
+    for (int i = 0; i < 35; i++)
+        addFace(top1, i, i + 1);
+    addFace(top1, 35, 0);
+
+    auto start = 49 * 36;
+    for (int i = start; i < start + 35; i++)
+        addFace(top2, i, i + 1);
+    addFace(top2, start + 35, start);
 
     for(auto &face: faces)
     {

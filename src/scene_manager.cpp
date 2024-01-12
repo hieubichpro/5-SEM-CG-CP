@@ -295,17 +295,14 @@ Vec3f random_vector(Vec3f a) {
 }
 void SceneManager::bump_map()
 {
-    for (auto& m : models)
+    auto m = models[curr_model];
+    for (auto& face : m->faces)
     {
-        for (auto& face : m->faces)
-        {
-            face.a.normal = random_vector(face.a.normal);
-            face.b.normal = random_vector(face.b.normal);
-        }
+        face.b.normal = random_vector(face.b.normal);
+        face.c.normal = random_vector(face.c.normal);
     }
     render();
 }
-
 //void SceneManager::test_proga()
 //{
 //    vector<int> arr;

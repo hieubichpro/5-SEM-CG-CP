@@ -15,8 +15,6 @@ Vertex VertexShader::shade(const Vertex &a, const Mat4x4f& objToWorld, const Mat
     if (fabs(new_pos.w) < eps)
         new_pos.w = 1;
     output.invW = 1 / new_pos.w;
-    output.texture.x *= output.invW;
-    output.texture.y *= output.invW;
     output.position *= output.invW;
     auto diffuse_comp = std::max(0.f, Vec3f::dot(output.normal.normalize(), (light.pos - output.position).normalize())) * m.diffuse_coef;
     Vec3f half = ((light.pos - output.position).normalize() + (cam.position - output.position).normalize()).normalize();

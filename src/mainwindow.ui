@@ -56,12 +56,12 @@
     </item>
     <item>
      <property name="text">
-      <string>Цилиндр</string>
+      <string>Сфера</string>
      </property>
     </item>
     <item>
      <property name="text">
-      <string>Сфера</string>
+      <string>Цилиндр</string>
      </property>
     </item>
    </widget>
@@ -111,10 +111,10 @@
      </rect>
     </property>
     <property name="minimum">
-     <double>-2.000000000000000</double>
+     <double>-3.000000000000000</double>
     </property>
     <property name="maximum">
-     <double>2.000000000000000</double>
+     <double>3.000000000000000</double>
     </property>
     <property name="singleStep">
      <double>0.250000000000000</double>
@@ -130,10 +130,10 @@
      </rect>
     </property>
     <property name="minimum">
-     <double>-2.000000000000000</double>
+     <double>-3.000000000000000</double>
     </property>
     <property name="maximum">
-     <double>2.000000000000000</double>
+     <double>3.000000000000000</double>
     </property>
     <property name="singleStep">
      <double>0.250000000000000</double>
@@ -149,13 +149,13 @@
      </rect>
     </property>
     <property name="minimum">
-     <double>-2.000000000000000</double>
+     <double>-3.000000000000000</double>
     </property>
     <property name="maximum">
-     <double>2.000000000000000</double>
+     <double>3.000000000000000</double>
     </property>
     <property name="singleStep">
-     <double>0.250000000000000</double>
+     <double>0.500000000000000</double>
     </property>
    </widget>
    <widget class="QDoubleSpinBox" name="rotate_x">
@@ -561,7 +561,7 @@
      <double>0.100000000000000</double>
     </property>
     <property name="value">
-     <double>0.500000000000000</double>
+     <double>0.300000000000000</double>
     </property>
    </widget>
    <widget class="QDoubleSpinBox" name="diffuse">
@@ -580,7 +580,7 @@
      <double>0.100000000000000</double>
     </property>
     <property name="value">
-     <double>0.500000000000000</double>
+     <double>0.700000000000000</double>
     </property>
    </widget>
    <widget class="QDoubleSpinBox" name="specular">

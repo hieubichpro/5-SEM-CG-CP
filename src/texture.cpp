@@ -8,13 +8,11 @@ TextureShader::TextureShader(const QImage& img){
 }
 
 Vec3f TextureShader::shade(const Vertex &a, const Vertex &b, const Vertex &c, const Vec3f &bary){
-    float pixel_z = interPolateCord(a.invW, b.invW, c.invW, bary);
-    float invZ = 1 / pixel_z;
 
     auto face_color = baryCentricInterpolation(a.color, b.color, c.color, bary);
 
-    float pixel_u = interPolateCord(a.texture.x , b.texture.x, c.texture.x, bary) * invZ;
-    float pixel_v = interPolateCord(a.texture.y , b.texture.y, c.texture.y, bary) * invZ;
+    float pixel_u = interPolateCord(a.texture.x , b.texture.x, c.texture.x, bary);
+    float pixel_v = interPolateCord(a.texture.y , b.texture.y, c.texture.y, bary);
 
     int x = std::floor(pixel_u * (texture.width()) - 1);
     int y = std::floor(pixel_v * (texture.height() - 1));
