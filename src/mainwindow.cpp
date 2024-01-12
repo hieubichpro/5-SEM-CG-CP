@@ -145,9 +145,25 @@ void MainWindow::on_procedural_clicked()
 {
     QImage img= QImage(400, 400, QImage::Format_RGB32);
     float w = img.width(), h = img.height();
-    for (int i = 0; i < w; i++)
-        for (int j = 0; j < h; j++)
-            img.setPixelColor(i, j, qRgb((1 + sin(i * 50)) / 2 * 255.f, (1 + sin(i * 50)) / 2 * 255.f, (1 + sin(i * 50)) / 2 * 255.f));
+    auto name_function = ui->function_list->currentText().toStdString();
+    if (name_function == "f = (1 + sin(50x)) / 2")
+    {
+        for (int i = 0; i < w; i++)
+            for (int j = 0; j < h; j++)
+                img.setPixelColor(i, j, qRgb((1 + sin(i * 50)) / 2 * 255.f, (1 + sin(i * 50)) / 2 * 255.f, (1 + sin(i * 50)) / 2 * 255.f));
+    }
+    else if (name_function == "f = 1/2 + 1/2 * sin(50x) * cos(50y)")
+    {
+        for (int i = 0; i < w; i++)
+            for (int j = 0; j < h; j++)
+                img.setPixelColor(i, j, qRgb(0.5 + 0.5 * sin(50 * i) * cos(50 * j) * 255.f, 0.5 + 0.5 * sin(50 * i) * cos(50 * j) * 255.f, 0.5 + 0.5 * sin(50 * i) * cos(50 * j) * 255.f));
+    }
+    else
+    {
+        for (int i = 0; i < w; i++)
+            for (int j = 0; j < h; j++)
+                img.setPixelColor(i, j, qRgb(sin(i * 50) * j / h * 255.f, sin(i * 50) * j / h * 255.f,  sin(i * 50) * j / h * 255.f));
+    }
     ui->graphicsView_2->scene()->addPixmap(QPixmap::fromImage(
                                                img.scaled(ui->graphicsView_2->width(), ui->graphicsView_2->height())
                                                ));
